@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import numpy as np
+import pytest
+
 from pytket.extensions.pyzx import (
     tk_to_pyzx,
     pyzx_to_tk,
@@ -24,8 +27,6 @@ from pytket.circuit import Circuit, fresh_symbol  # type: ignore
 from pytket.architecture import Architecture  # type: ignore
 from pytket.passes import AASRouting, CXMappingPass  # type: ignore
 from pytket.placement import GraphPlacement  # type: ignore
-import numpy as np
-import pytest
 
 
 @pytest.mark.filterwarnings("ignore:strict=False")
