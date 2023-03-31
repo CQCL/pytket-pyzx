@@ -30,7 +30,7 @@ setup(
     version=metadata["__extension_version__"],
     author="TKET development team",
     author_email="tket-support@cambridgequantum.com",
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     project_urls={
         "Documentation": "https://cqcl.github.io/pytket-pyzx/api/index.html",
         "Source": "https://github.com/CQCL/pytket-pyzx",
@@ -46,7 +46,7 @@ setup(
     install_requires=["pytket ~= 1.13.2", "pyzx ~= 0.7.0"],
     classifiers=[
         "Environment :: Console",
-        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: Apache Software License",
