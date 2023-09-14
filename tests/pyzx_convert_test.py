@@ -23,10 +23,10 @@ from pytket.extensions.pyzx import (
     tk_to_pyzx_placed_circ,
     pyzx_to_tk_placed_circ,
 )
-from pytket.circuit import Circuit, fresh_symbol  # type: ignore
-from pytket.architecture import Architecture  # type: ignore
-from pytket.passes import AASRouting, CXMappingPass  # type: ignore
-from pytket.placement import GraphPlacement  # type: ignore
+from pytket.circuit import Circuit, fresh_symbol
+from pytket.architecture import Architecture
+from pytket.passes import AASRouting, CXMappingPass
+from pytket.placement import GraphPlacement
 
 
 @pytest.mark.filterwarnings("ignore:strict=False")
