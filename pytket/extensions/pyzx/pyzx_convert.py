@@ -21,8 +21,8 @@ import pyzx as zx  # type: ignore
 from pyzx.circuit import Circuit as pyzxCircuit  # type: ignore
 from pyzx.routing.architecture import Architecture as PyzxArc  # type: ignore
 from pyzx.graph.graph import Graph as PyzxGraph  # type: ignore
-from pytket.circuit import OpType, Circuit, Op, Qubit, UnitID  # type: ignore
-from pytket.architecture import Architecture  # type: ignore
+from pytket.circuit import OpType, Circuit, Op, Qubit, UnitID
+from pytket.architecture import Architecture
 
 _tk_to_pyzx_gates = {
     OpType.Rz: zx.gates.ZPhase,
@@ -179,7 +179,7 @@ def pyzx_to_tk_arc(pyzx_arc: PyzxArc) -> Architecture:
     :return: The converted pyzx Architecture
     """
 
-    return Architecture([tuple(s) for s in pyzx_arc.graph.edges()])
+    return Architecture([(int(s[0]), int(s[1])) for s in pyzx_arc.graph.edges()])
 
 
 def tk_to_pyzx_placed_circ(
@@ -229,7 +229,7 @@ def tk_to_pyzx_placed_circ(
         qubit_dict[q] = i
 
     for i, x in enumerate(pytket_arc.nodes):
-        arc_dict[x] = qubit_dict[q_map[x]]
+        arc_dict[x] = qubit_dict[q_map[x]]  # type: ignore
 
     edges = [
         (vertices[arc_dict[v1]], vertices[arc_dict[v2]])

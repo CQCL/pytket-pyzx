@@ -23,10 +23,10 @@ from pytket.extensions.pyzx import (
     tk_to_pyzx_placed_circ,
     pyzx_to_tk_placed_circ,
 )
-from pytket.circuit import Circuit, fresh_symbol  # type: ignore
-from pytket.architecture import Architecture  # type: ignore
-from pytket.passes import AASRouting, CXMappingPass  # type: ignore
-from pytket.placement import GraphPlacement  # type: ignore
+from pytket.circuit import Circuit, fresh_symbol
+from pytket.architecture import Architecture
+from pytket.passes import AASRouting, CXMappingPass
+from pytket.placement import GraphPlacement
 
 
 @pytest.mark.filterwarnings("ignore:strict=False")
@@ -74,7 +74,7 @@ def test_invalid_gate() -> None:
 
 @pytest.mark.filterwarnings("ignore:strict=False")
 def test_arc_conversion() -> None:
-    arc = Architecture([[0, 1], [1, 2], [2, 3], [3, 4]])
+    arc = Architecture([(0, 1), (1, 2), (2, 3), (3, 4)])
     arc_pyzx = tk_to_pyzx_arc(arc)
     arc_2 = pyzx_to_tk_arc(arc_pyzx)
     assert arc == arc_2
@@ -85,7 +85,7 @@ def test_arc_conversion() -> None:
 
 @pytest.mark.filterwarnings("ignore:strict=False")
 def test_placed_circ_tests() -> None:
-    arc = Architecture([[0, 2], [1, 2], [2, 3], [3, 4]])
+    arc = Architecture([(0, 2), (1, 2), (2, 3), (3, 4)])
     initial_circ = Circuit(5)
     initial_circ.H(0)
     initial_circ.H(1)
@@ -112,7 +112,7 @@ def test_placed_circ_tests() -> None:
 
 @pytest.mark.filterwarnings("ignore:strict=False")
 def test_placed_circ_tests_2() -> None:
-    arc = Architecture([[0, 2], [1, 2], [2, 3], [3, 4]])
+    arc = Architecture([(0, 2), (1, 2), (2, 3), (3, 4)])
     initial_circ = Circuit(5)
     initial_circ.H(0)
     initial_circ.H(1)
