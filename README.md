@@ -1,8 +1,3 @@
-# Pytket Extensions
-
-This repository contains the pytket-pyzx extension, using Quantinuum's
-[pytket](https://cqcl.github.io/tket/pytket/api/index.html) quantum SDK.
-
 # pytket-pyzx
 
 [Pytket](https://cqcl.github.io/tket/pytket/api/index.html) is a python module for interfacing
