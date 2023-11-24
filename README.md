@@ -1,12 +1,7 @@
-# Pytket Extensions
-
-This repository contains the pytket-pyzx extension, using Quantinuum's
-[pytket](https://cqcl.github.io/tket/pytket/api/index.html) quantum SDK.
-
 # pytket-pyzx
 
-[Pytket](https://cqcl.github.io/tket/pytket/api/index.html) is a python module for interfacing
-with tket, a quantum computing toolkit and optimisation compiler developed by Quantinuum.
+[Pytket](https://tket.quantinuum.com/api-docs/index.html) is a python module for interfacing
+with tket, a quantum computing toolkit and optimising compiler developed by Quantinuum.
 
 `pytket-pyzx` is an extension to `pytket` that allows conversion to and from
 PyZX representations.
@@ -16,7 +11,9 @@ PyZX representations.
 `pytket-pyzx` is available for Python 3.9, 3.10 and 3.11, on Linux, MacOS
 and Windows. To install, run:
 
-```pip install pytket-pyzx```
+```shell
+pip install pytket-pyzx
+```
 
 This will install `pytket` if it isn't already installed, and add new classes
 and methods into the `pytket.extensions` namespace.
