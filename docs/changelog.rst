@@ -1,6 +1,11 @@
 Changelog
 ~~~~~~~~~
 
+Unreleased
+----------
+
+* Updated pyzx version requirement to 0.8.0.
+
 0.31.0 (January 2024)
 ---------------------
 
