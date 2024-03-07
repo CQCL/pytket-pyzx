@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Methods to allow conversion between pyzx and tket data types
-"""
+"""Methods to allow conversion between pyzx and tket data types"""
 
 from typing import Dict, Tuple
 from fractions import Fraction
@@ -127,7 +126,7 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
         elif op_type == OpType.Tdg and not getattr(g, "adjoint"):
             op_type = OpType.T
 
-        if hasattr(g, "printphase") and op_type in _parameterised_gates:
+        if hasattr(g, "print_phase") and op_type in _parameterised_gates:
             op = Op.create(op_type, g.phase)
         else:
             op = Op.create(op_type)
