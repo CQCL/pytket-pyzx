@@ -1,9 +1,10 @@
 Changelog
 ~~~~~~~~~
 
-Unreleased
-----------
+0.32.0 (March 2024)
+-------------------
 
+* Updated pytket version requirement to 1.26.
 * Updated pyzx version requirement to 0.8.0.
 
 0.31.0 (January 2024)
