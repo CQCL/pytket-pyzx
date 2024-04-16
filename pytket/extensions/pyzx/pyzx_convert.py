@@ -1,4 +1,4 @@
-# Copyright 2019-2024 Cambridge Quantum Computing
+# Copyright 2019-2024 Quantinuum
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ def tk_to_pyzx(tkcircuit: Circuit, denominator_limit: int = 1000000) -> pyzxCirc
                     + str(op)
                     + ", as it contains symbolic parameters."
                 )
-            phase = Fraction(phase).limit_denominator(denominator_limit)
+            phase = Fraction(phase).limit_denominator(denominator_limit)  # type: ignore
             gate = gate_class(*qbs, phase=phase)
         elif n_params > 1:
             raise Exception(
