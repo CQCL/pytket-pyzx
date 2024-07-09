@@ -83,7 +83,7 @@ def tk_to_pyzx(tkcircuit: Circuit, denominator_limit: int = 1000000) -> pyzxCirc
                     + str(op)
                     + ", as it contains symbolic parameters."
                 )
-            phase = Fraction(phase).limit_denominator(denominator_limit)  # type: ignore
+            phase = Fraction(phase).limit_denominator(denominator_limit)
             gate = gate_class(*qbs, phase=phase)
         elif n_params > 1:
             raise Exception(
