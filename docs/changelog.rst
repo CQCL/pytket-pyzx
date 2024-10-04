@@ -1,5 +1,12 @@
+.. currentmodule:: pytket.extensions.pyzx
+
 Changelog
 ~~~~~~~~~
+
+0.35.0 (October 2024)
+---------------------
+
+* Updated pytket version requirement to 1.33.
 
 0.34.0 (July 2024)
 ------------------
