@@ -15,7 +15,6 @@
 """Methods to allow conversion between pyzx and tket data types"""
 
 from fractions import Fraction
-from typing import Dict, Tuple
 
 from pytket.architecture import Architecture
 from pytket.circuit import Circuit, Op, OpType, Qubit, UnitID
@@ -39,9 +38,7 @@ _tk_to_pyzx_gates = {
     OpType.SWAP: zxGates.SWAP,
 }
 
-_pyzx_to_tk_gates: Dict = dict(
-    (item[1], item[0]) for item in _tk_to_pyzx_gates.items()
-)
+_pyzx_to_tk_gates: dict = dict((item[1], item[0]) for item in _tk_to_pyzx_gates.items())
 
 _parameterised_gates = {OpType.Rz, OpType.Rx}
 
@@ -191,7 +188,7 @@ def tk_to_pyzx_placed_circ(
     pytket_arc: Architecture,
     denominator_limit: int = 1000000,
     pyzx_arc_name: str = "",
-) -> Tuple[PyzxArc, pyzxCircuit, Dict[UnitID, UnitID]]:
+) -> tuple[PyzxArc, pyzxCircuit, dict[UnitID, UnitID]]:
     """
     Convert a (placed) tket :py:class:`Circuit` with
     a given :py:class:`Architecture` to a
@@ -250,7 +247,7 @@ def tk_to_pyzx_placed_circ(
 
 
 def pyzx_to_tk_placed_circ(
-    pyzx_circ: pyzxCircuit, q_map: Dict[UnitID, UnitID]
+    pyzx_circ: pyzxCircuit, q_map: dict[UnitID, UnitID]
 ) -> Circuit:
     """
     Convert a :py:class:`pyzx.Circuit` and a placment map
