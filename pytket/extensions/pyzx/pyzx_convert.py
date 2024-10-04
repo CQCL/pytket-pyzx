@@ -14,13 +14,15 @@
 
 """Methods to allow conversion between pyzx and tket data types"""
 
-from typing import Dict, Tuple
 from fractions import Fraction
-from pyzx.circuit import Circuit as pyzxCircuit, gates as zxGates
-from pyzx.routing.architecture import Architecture as PyzxArc
-from pyzx.graph.graph import Graph as PyzxGraph
-from pytket.circuit import OpType, Circuit, Op, Qubit, UnitID
+from typing import Dict, Tuple
+
 from pytket.architecture import Architecture
+from pytket.circuit import Circuit, Op, OpType, Qubit, UnitID
+from pyzx.circuit import Circuit as pyzxCircuit
+from pyzx.circuit import gates as zxGates
+from pyzx.graph.graph import Graph as PyzxGraph
+from pyzx.routing.architecture import Architecture as PyzxArc
 
 _tk_to_pyzx_gates = {
     OpType.Rz: zxGates.ZPhase,
@@ -38,7 +40,7 @@ _tk_to_pyzx_gates = {
 }
 
 _pyzx_to_tk_gates: Dict = dict(
-    ((item[1], item[0]) for item in _tk_to_pyzx_gates.items())
+    (item[1], item[0]) for item in _tk_to_pyzx_gates.items()
 )
 
 _parameterised_gates = {OpType.Rz, OpType.Rx}
@@ -110,7 +112,7 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
     """
     c = Circuit(pyzx_circ.qubits, name=pyzx_circ.name)
     for g in pyzx_circ.gates:
-        if not type(g) in _pyzx_to_tk_gates:
+        if type(g) not in _pyzx_to_tk_gates:
             raise Exception(
                 "Cannot parse PyZX gate of type " + g.name + "into tket Circuit"
             )
