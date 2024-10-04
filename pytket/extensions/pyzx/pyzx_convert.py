@@ -14,13 +14,14 @@
 
 """Methods to allow conversion between pyzx and tket data types"""
 
-from typing import Dict, Tuple
 from fractions import Fraction
-from pyzx.circuit import Circuit as pyzxCircuit, gates as zxGates
-from pyzx.routing.architecture import Architecture as PyzxArc
-from pyzx.graph.graph import Graph as PyzxGraph
-from pytket.circuit import OpType, Circuit, Op, Qubit, UnitID
+
 from pytket.architecture import Architecture
+from pytket.circuit import Circuit, Op, OpType, Qubit, UnitID
+from pyzx.circuit import Circuit as pyzxCircuit
+from pyzx.circuit import gates as zxGates
+from pyzx.graph.graph import Graph as PyzxGraph
+from pyzx.routing.architecture import Architecture as PyzxArc
 
 _tk_to_pyzx_gates = {
     OpType.Rz: zxGates.ZPhase,
@@ -37,9 +38,7 @@ _tk_to_pyzx_gates = {
     OpType.SWAP: zxGates.SWAP,
 }
 
-_pyzx_to_tk_gates: Dict = dict(
-    ((item[1], item[0]) for item in _tk_to_pyzx_gates.items())
-)
+_pyzx_to_tk_gates: dict = dict((item[1], item[0]) for item in _tk_to_pyzx_gates.items())
 
 _parameterised_gates = {OpType.Rz, OpType.Rx}
 
@@ -110,7 +109,7 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
     """
     c = Circuit(pyzx_circ.qubits, name=pyzx_circ.name)
     for g in pyzx_circ.gates:
-        if not type(g) in _pyzx_to_tk_gates:
+        if type(g) not in _pyzx_to_tk_gates:
             raise Exception(
                 "Cannot parse PyZX gate of type " + g.name + "into tket Circuit"
             )
@@ -189,7 +188,7 @@ def tk_to_pyzx_placed_circ(
     pytket_arc: Architecture,
     denominator_limit: int = 1000000,
     pyzx_arc_name: str = "",
-) -> Tuple[PyzxArc, pyzxCircuit, Dict[UnitID, UnitID]]:
+) -> tuple[PyzxArc, pyzxCircuit, dict[UnitID, UnitID]]:
     """
     Convert a (placed) tket :py:class:`Circuit` with
     a given :py:class:`Architecture` to a
@@ -248,7 +247,7 @@ def tk_to_pyzx_placed_circ(
 
 
 def pyzx_to_tk_placed_circ(
-    pyzx_circ: pyzxCircuit, q_map: Dict[UnitID, UnitID]
+    pyzx_circ: pyzxCircuit, q_map: dict[UnitID, UnitID]
 ) -> Circuit:
     """
     Convert a :py:class:`pyzx.Circuit` and a placment map
