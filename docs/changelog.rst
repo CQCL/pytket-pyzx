@@ -7,6 +7,7 @@ Changelog
 -------------------
 
 * Updated pytket version requirement to 1.39.
+* Updated minimum pyzx version requirement to 0.9.0.
 
 0.35.0 (October 2024)
 ---------------------
