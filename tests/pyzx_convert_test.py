@@ -15,16 +15,16 @@
 import numpy as np
 import pytest
 
-from pytket.extensions.pyzx import (
-    tk_to_pyzx,
-    pyzx_to_tk,
-    tk_to_pyzx_arc,
-    pyzx_to_tk_arc,
-    tk_to_pyzx_placed_circ,
-    pyzx_to_tk_placed_circ,
-)
-from pytket.circuit import Circuit, fresh_symbol
 from pytket.architecture import Architecture
+from pytket.circuit import Circuit, fresh_symbol
+from pytket.extensions.pyzx import (
+    pyzx_to_tk,
+    pyzx_to_tk_arc,
+    pyzx_to_tk_placed_circ,
+    tk_to_pyzx,
+    tk_to_pyzx_arc,
+    tk_to_pyzx_placed_circ,
+)
 from pytket.passes import AASRouting, CXMappingPass
 from pytket.placement import GraphPlacement
 
