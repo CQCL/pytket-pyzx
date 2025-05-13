@@ -14,12 +14,12 @@
 """Module for conversion between PyZX and tket primitives."""
 
 # _metadata.py is copied to the folder after installation.
-from ._metadata import __extension_version__, __extension_name__
+from ._metadata import __extension_name__, __extension_version__
 from .pyzx_convert import (
-    tk_to_pyzx,
     pyzx_to_tk,
-    tk_to_pyzx_arc,
     pyzx_to_tk_arc,
-    tk_to_pyzx_placed_circ,
     pyzx_to_tk_placed_circ,
+    tk_to_pyzx,
+    tk_to_pyzx_arc,
+    tk_to_pyzx_placed_circ,
 )

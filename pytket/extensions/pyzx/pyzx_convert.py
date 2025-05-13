@@ -14,13 +14,14 @@
 
 """Methods to allow conversion between pyzx and tket data types"""
 
-from typing import Dict, Tuple
 from fractions import Fraction
-from pyzx.circuit import Circuit as pyzxCircuit, gates as zxGates
-from pyzx.routing.architecture import Architecture as PyzxArc
-from pyzx.graph.graph import Graph as PyzxGraph
-from pytket.circuit import OpType, Circuit, Op, Qubit, UnitID
+
 from pytket.architecture import Architecture
+from pytket.circuit import Circuit, Op, OpType, Qubit, UnitID
+from pyzx.circuit import Circuit as pyzxCircuit
+from pyzx.circuit import gates as zxGates
+from pyzx.graph.graph import Graph as PyzxGraph
+from pyzx.routing.architecture import Architecture as PyzxArc
 
 _tk_to_pyzx_gates = {
     OpType.Rz: zxGates.ZPhase,
@@ -37,8 +38,8 @@ _tk_to_pyzx_gates = {
     OpType.SWAP: zxGates.SWAP,
 }
 
-_pyzx_to_tk_gates: Dict = dict(
-    ((item[1], item[0]) for item in _tk_to_pyzx_gates.items())
+_pyzx_to_tk_gates: dict = dict(  # noqa: C402
+    (item[1], item[0]) for item in _tk_to_pyzx_gates.items()
 )
 
 _parameterised_gates = {OpType.Rz, OpType.Rx}
@@ -71,7 +72,7 @@ def tk_to_pyzx(tkcircuit: Circuit, denominator_limit: int = 1000000) -> pyzxCirc
                 + ", as the gate type is unrecognised."
             )
         gate_class = _tk_to_pyzx_gates[op.type]
-        adjoint = op.type == OpType.Sdg or op.type == OpType.Tdg
+        adjoint = op.type == OpType.Sdg or op.type == OpType.Tdg  # noqa: PLR1714
         qbs = [q.index[0] for q in command.args]
         gate: zxGates.Gate  # assignment
         n_params = len(op.params)
@@ -110,19 +111,19 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
     """
     c = Circuit(pyzx_circ.qubits, name=pyzx_circ.name)
     for g in pyzx_circ.gates:
-        if not type(g) in _pyzx_to_tk_gates:
+        if type(g) not in _pyzx_to_tk_gates:
             raise Exception(
                 "Cannot parse PyZX gate of type " + g.name + "into tket Circuit"
             )
         op_type = _pyzx_to_tk_gates[type(g)]
-        if hasattr(g, "control"):
-            qbs = [getattr(g, "control"), getattr(g, "target")]
+        if hasattr(g, "control"):  # noqa: SIM108
+            qbs = [g.control, g.target]
         else:
-            qbs = [getattr(g, "target")]
+            qbs = [g.target]
 
-        if op_type == OpType.Sdg and not getattr(g, "adjoint"):
+        if op_type == OpType.Sdg and not g.adjoint:
             op_type = OpType.S
-        elif op_type == OpType.Tdg and not getattr(g, "adjoint"):
+        elif op_type == OpType.Tdg and not g.adjoint:
             op_type = OpType.T
 
         if (
@@ -154,10 +155,10 @@ def tk_to_pyzx_arc(pytket_arc: Architecture, pyzx_arc_name: str = "") -> PyzxArc
 
     arcgraph = PyzxGraph()
     vertices = arcgraph.add_vertices(len(pytket_arc.nodes))
-    arc_dict = dict()
+    arc_dict = dict()  # noqa: C408
 
     for i, x in enumerate(pytket_arc.nodes):
-        arc_dict[x] = i
+        arc_dict[x] = i  # noqa: PERF403
 
     edges = [
         (vertices[arc_dict[v1]], vertices[arc_dict[v2]])
@@ -168,7 +169,7 @@ def tk_to_pyzx_arc(pytket_arc: Architecture, pyzx_arc_name: str = "") -> PyzxArc
 
     pyzx_arc = PyzxArc(pyzx_arc_name, coupling_graph=arcgraph)
 
-    return pyzx_arc
+    return pyzx_arc  # noqa: RET504
 
 
 def pyzx_to_tk_arc(pyzx_arc: PyzxArc) -> Architecture:
@@ -189,7 +190,7 @@ def tk_to_pyzx_placed_circ(
     pytket_arc: Architecture,
     denominator_limit: int = 1000000,
     pyzx_arc_name: str = "",
-) -> Tuple[PyzxArc, pyzxCircuit, Dict[UnitID, UnitID]]:
+) -> tuple[PyzxArc, pyzxCircuit, dict[UnitID, UnitID]]:
     """
     Convert a (placed) tket :py:class:`Circuit` with
     a given :py:class:`Architecture` to a
@@ -223,14 +224,14 @@ def tk_to_pyzx_placed_circ(
 
     arcgraph = PyzxGraph()
     vertices = arcgraph.add_vertices(len(pytket_arc.nodes))
-    arc_dict = dict()
-    qubit_dict = dict()
+    arc_dict = dict()  # noqa: C408
+    qubit_dict = dict()  # noqa: C408
 
     for i in range(len(pytket_arc.nodes)):
         q = Qubit(i)
         qubit_dict[q] = i
 
-    for i, x in enumerate(pytket_arc.nodes):
+    for i, x in enumerate(pytket_arc.nodes):  # noqa: B007
         arc_dict[x] = qubit_dict[q_map[x]]  # type: ignore
 
     edges = [
@@ -248,7 +249,7 @@ def tk_to_pyzx_placed_circ(
 
 
 def pyzx_to_tk_placed_circ(
-    pyzx_circ: pyzxCircuit, q_map: Dict[UnitID, UnitID]
+    pyzx_circ: pyzxCircuit, q_map: dict[UnitID, UnitID]
 ) -> Circuit:
     """
     Convert a :py:class:`pyzx.Circuit` and a placment map
