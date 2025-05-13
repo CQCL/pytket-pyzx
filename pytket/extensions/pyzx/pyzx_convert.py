@@ -117,13 +117,13 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
             )
         op_type = _pyzx_to_tk_gates[type(g)]
         if hasattr(g, "control"):  # noqa: SIM108
-            qbs = [g.control, g.target]
+            qbs = [g.control, g.target]  # type: ignore
         else:
-            qbs = [g.target]
+            qbs = [g.target]  # type: ignore
 
-        if op_type == OpType.Sdg and not g.adjoint:
+        if op_type == OpType.Sdg and not g.adjoint:  # type: ignore
             op_type = OpType.S
-        elif op_type == OpType.Tdg and not g.adjoint:
+        elif op_type == OpType.Tdg and not g.adjoint:  # type: ignore
             op_type = OpType.T
 
         if (
