@@ -47,8 +47,8 @@ _parameterised_gates = {OpType.Rz, OpType.Rx}
 
 def tk_to_pyzx(tkcircuit: Circuit, denominator_limit: int = 1000000) -> pyzxCircuit:
     """
-    Convert a tket :py:class:`Circuit` to a
-    :py:class:`pyzx.Circuit`.
+    Convert a tket :py:class:~pytket._tket.circuit.`Circuit` to a
+    :py:class:`pyzx.circuit.Circuit`.
 
     :param tkcircuit: A circuit to be converted
     :param denominator_limit: The limit for denominator size when converting
@@ -102,7 +102,7 @@ def tk_to_pyzx(tkcircuit: Circuit, denominator_limit: int = 1000000) -> pyzxCirc
 
 def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
     """
-    Convert a :py:class:`pyzx.Circuit` to a tket :py:class:`Circuit` .
+    Convert a :py:class:`pyzx.circuit.Circuit` to a tket :py:class:`~pytket._tket.circuit.Circuit` .
     Run `pyzx_circuit_name.to_basic_gates()` before conversion.
 
     :param pyzx_circ: A circuit to be converted
@@ -141,7 +141,7 @@ def pyzx_to_tk(pyzx_circ: pyzxCircuit) -> Circuit:
 
 def tk_to_pyzx_arc(pytket_arc: Architecture, pyzx_arc_name: str = "") -> PyzxArc:
     """
-    Convert a pytket :py:class:`Architecture` to a pyzx
+    Convert a pytket :py:class:`~pytket.architecture.Architecture` to a pyzx
     :py:class:`pyzx.routing.architecture.Architecture` .
     The conversion will remove all the node names and will
     keep them only integer named in the order they are given
@@ -175,7 +175,7 @@ def tk_to_pyzx_arc(pytket_arc: Architecture, pyzx_arc_name: str = "") -> PyzxArc
 def pyzx_to_tk_arc(pyzx_arc: PyzxArc) -> Architecture:
     """
     Convert a pyzx :py:class:`pyzx.routing.architecture.Architecture`
-    to a pytket :py:class:`Architecture` .
+    to a pytket :py:class:`~pytket.architecture.Architecture` .
 
     :param pytket_arc: A Architecture to be converted
 
@@ -192,9 +192,9 @@ def tk_to_pyzx_placed_circ(
     pyzx_arc_name: str = "",
 ) -> tuple[PyzxArc, pyzxCircuit, dict[UnitID, UnitID]]:
     """
-    Convert a (placed) tket :py:class:`Circuit` with
-    a given :py:class:`Architecture` to a
-    :py:class:`pyzx.Circuit` and the
+    Convert a (placed) tket :py:class:`~pytket._tket.circuit.Circuit` with
+    a given :py:class:`~pytket.architecture.Architecture` to a
+    :py:class:`pyzx.circuit.Circuit` and the
     :py:class:`pyzx.routing.architecture.Architecture`
     and a map to give the information for converting the
     pyzx circuit back to pytket circuit using `pyzx_to_tk_placed_circ`
@@ -208,7 +208,7 @@ def tk_to_pyzx_placed_circ(
         allow for more precise angles.
     :param pyzx_arc_name: Name of the architecture in pyzx
 
-    :return: Tuple containing generated :py:class:`pyzx.Circuit` ,
+    :return: Tuple containing generated :py:class:`pyzx.circuit.Circuit` ,
         :py:class:`pyzx.routing.architecture.Architecture` and
         a map to give the information for converting
         the pyzx circuit back to pytket circuit using `pyzx_to_tk_placed_circ`
@@ -252,8 +252,8 @@ def pyzx_to_tk_placed_circ(
     pyzx_circ: pyzxCircuit, q_map: dict[UnitID, UnitID]
 ) -> Circuit:
     """
-    Convert a :py:class:`pyzx.Circuit` and a placment map
-    to a placed tket :py:class:`Circuit` .
+    Convert a :py:class:`pyzx.circuit.Circuit` and a placment map
+    to a placed tket :py:class:`~pytket._tket.circuit.Circuit` .
     Run `pyzx_circuit_name.to_basic_gates()` before conversion.
 
     :param pyzx_circ: A circuit to be converted
