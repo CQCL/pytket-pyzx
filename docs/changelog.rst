@@ -81,9 +81,9 @@ Changelog
 ------------------
 
 * Updated pytket version requirement to 1.3.
-* add new functions for architecture conversion between
-  pytket and pyzx: `tk_to_pyzx_arc`, `pyzx_to_tk_arc`,
-  `tk_to_pyzx_placed_circ` and `pyzx_to_tk_placed_circ`
+* Add new functions for architecture conversion between
+  pytket and pyzx: :py:func:`~.tk_to_pyzx_arc`, :py:func:`~.pyzx_to_tk_arc`,
+  :py:func:`~.tk_to_pyzx_placed_circ` and :py:func:`~.pyzx_to_tk_placed_circ`
 
 0.21.0 (May 2022)
 -----------------
