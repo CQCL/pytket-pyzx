@@ -14,9 +14,11 @@
 
 import numpy as np
 import pytest
-
 from pytket.architecture import Architecture
 from pytket.circuit import Circuit, fresh_symbol
+from pytket.passes import AASRouting, CXMappingPass
+from pytket.placement import GraphPlacement
+
 from pytket.extensions.pyzx import (
     pyzx_to_tk,
     pyzx_to_tk_arc,
@@ -25,8 +27,6 @@ from pytket.extensions.pyzx import (
     tk_to_pyzx_arc,
     tk_to_pyzx_placed_circ,
 )
-from pytket.passes import AASRouting, CXMappingPass
-from pytket.placement import GraphPlacement
 
 
 @pytest.mark.filterwarnings("ignore:strict=False")

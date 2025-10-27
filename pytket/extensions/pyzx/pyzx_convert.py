@@ -16,6 +16,7 @@ from fractions import Fraction
 
 from pytket.architecture import Architecture
 from pytket.circuit import Circuit, Op, OpType, Qubit, UnitID
+
 from pyzx.circuit import Circuit as pyzxCircuit
 from pyzx.circuit import gates as zxGates
 from pyzx.graph.graph import Graph as PyzxGraph
